@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import MutationObserver from 'mutationobserver-shim';
 
 import Article from './Article';
-import { render } from 'react-dom';
+import { render, screen } from '@testing-library/react';
 
 const testArticle = {
     id: 'qOkzu', //unique article id
@@ -16,32 +16,32 @@ const testArticle = {
 }
 
 test('renders component without errors', ()=> { 
-    //render(<Article />);
+    render(<Article article={testArticle} />);
 });
 
 test('renders headline, author from the article when passed in through props', ()=> {
-    //render(<Article article={testArticle}/>);
+    render(<Article article={testArticle}/>);
     //arrange
-    //const headline = screen.queryByTestId('headline');
-    //const author = screen.queryByTestId('author');
+    const headline = screen.queryByTestId('headline');
+    const author = screen.queryByTestId('author');
     //act
-    //expect(headline).toBeInTheDocument();
-    //expect(author).toBeInTheDocument();
+    expect(headline).toBeInTheDocument();
+    expect(author).toBeInTheDocument();
     //assert
 });
 
 test('renders "Associated Press" when no author is given', ()=> {
-      //render(<Article article={testArticle} />);
-    //const author = screen.queryByTestId('author');
-    //expect(author).toHaveTextContent(/Associated Press/i);
+      render(<Article article={testArticle} />);
+    const author = screen.queryByTestId('author');
+    expect(author).toHaveTextContent(/Associated Press/i);
 });
 
 test('executes handleDelete when the delete button is pressed', ()=> {
-     //const handleDelete = jest.fn();
-    //render(<Article article={testArticle} handleDelete={handleDelete}/>);
-    //const deleteBtn = screen.queryByTestId('deleteButton');
-    //userEvent.click(deleteBtn);
-    //expect(handleDelete).toHaveBeenCalled();
+     const handleDelete = jest.fn();
+    render(<Article article={testArticle} handleDelete={handleDelete}/>);
+    const deleteBtn = screen.queryByTestId('deleteButton');
+    userEvent.click(deleteBtn);
+    expect(handleDelete).toHaveBeenCalled();
 });
 
 //Task List: 
