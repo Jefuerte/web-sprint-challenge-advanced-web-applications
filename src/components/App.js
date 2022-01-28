@@ -7,7 +7,7 @@ import BloomHeader from './BloomHeader';
 import Login from './Login';
 import Logout from './Logout';
 import View from './View';
-import PrivateRoute from './Privateroute';
+import PrivateRoute from './PrivateRoute';
 
 const App = () => {
   return (
