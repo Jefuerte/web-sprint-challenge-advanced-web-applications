@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const initialArticle = {
@@ -12,6 +12,17 @@ const initialArticle = {
 const EditForm = (props)=> {
     const [article, setArticle]  = useState(initialArticle);
     const {handleEdit, handleEditCancel, editId} = props;
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`http://localhost:5000/api/articles/${editId}`)
+            .then(res => {
+                setArticle(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, [])
 
     const handleChange = (e)=> {
         setArticle({
@@ -49,7 +60,7 @@ const EditForm = (props)=> {
             <label>Body</label>
             <input value={article.body} id="body" name="body" onChange={handleChange}/>
         </div>
-        <Button id="editButton">Edit Article</Button>
+        <Button onClick={handleSubmit} id="editButton">Edit Article</Button>
         <Button onClick={handleCancel}>Cancel</Button>
     </FormContainer>);
 }
