@@ -117,9 +117,13 @@ In this project, you will demonstrate your mastery of these skills by creating *
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers below.
 
 1. Explain what a token is used for.
+a token is used for authentication it is used to tell which user is which.
 
 2. What steps can you take in your web apps to keep your data secure?
+You can use protected routes that need authorization tokens. You can use axiosWithAuth, which creates a sort of fence that needs the users token to be passed.
 
 3. Describe how web servers work.
+Web server is a machine that holds and runs code for a website. The servers share the code globally 24/7.
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+POST, GET, PUT, DELETE Create, Read, Update, Delete
